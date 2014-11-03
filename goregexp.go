@@ -5,8 +5,9 @@ import (
 	"regexp"
 )
 
-/* Encapsulate a regex and a string,
-for managing results from FindAllStringSubmatchIndex */
+// Reres encapsulate a regex, a string, and the results
+// from applying the regexp on the string
+// internally managing results from FindAllStringSubmatchIndex
 type Reres struct {
 	r        *regexp.Regexp
 	s        string
@@ -20,7 +21,8 @@ func (r *Reres) String() string {
 	return msg
 }
 
-/* Build new result from FindAllStringSubmatchIndex on a string */
+// NewReres builds a new regexp result
+// (internally using FindAllStringSubmatchIndex on a string)
 func NewReres(s string, r *regexp.Regexp) *Reres {
 	matches := r.FindAllStringSubmatchIndex(s, -1)
 	return &Reres{r, s, matches, 0, 0}
