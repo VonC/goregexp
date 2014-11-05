@@ -14,5 +14,11 @@ func TestProject(t *testing.T) {
 			rx := NewReres("test", r)
 			So(rx.String(), ShouldEqual, "Regexp res for 'test': (0-0; len 4) [[0 4]]")
 		})
+
+		Convey("A Regexp res container can display the string on which the regexp is applied", func() {
+			r := regexp.MustCompile("test")
+			rx := NewReres("test2", r)
+			So(rx.Text(), ShouldEqual, "test2")
+		})
 	})
 }

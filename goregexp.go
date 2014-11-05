@@ -28,7 +28,7 @@ func NewReres(s string, r *regexp.Regexp) *Reres {
 	return &Reres{r, s, matches, 0, 0}
 }
 
-/* full initial text on which the regex was applied */
+/* Text returns the full initial text on which the regex was applied */
 func (rr *Reres) Text() string {
 	return rr.s
 }
