@@ -20,5 +20,13 @@ func TestProject(t *testing.T) {
 			rx := NewReres("test2", r)
 			So(rx.Text(), ShouldEqual, "test2")
 		})
+
+		Convey("A Regexp res container knows if it has any match", func() {
+			r := regexp.MustCompile("test")
+			rx := NewReres("test3", r)
+			So(rx.HasAnyMatch(), ShouldBeTrue)
+			rx = NewReres("aaa", r)
+			So(rx.HasAnyMatch(), ShouldBeFalse)
+		})
 	})
 }

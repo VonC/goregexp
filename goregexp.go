@@ -33,7 +33,7 @@ func (rr *Reres) Text() string {
 	return rr.s
 }
 
-/* Check if there is any match */
+/* HasAnyMatch checks if there is any match */
 func (rr *Reres) HasAnyMatch() bool {
 	return len(rr.matches) > 0
 }
