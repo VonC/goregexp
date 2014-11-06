@@ -28,5 +28,16 @@ func TestProject(t *testing.T) {
 			rx = NewReres("aaa", r)
 			So(rx.HasAnyMatch(), ShouldBeFalse)
 		})
+
+		Convey("A Regexp res can reference groups", func() {
+			r := regexp.MustCompile("(test)+")
+			rx := NewReres("testtest", r)
+			So(rx.HasNext(), ShouldBeTrue)
+			rx.Next()
+			So(rx.HasNext(), ShouldBeFalse)
+			rx.ResetNext()
+			So(rx.HasNext(), ShouldBeTrue)
+		})
+
 	})
 }

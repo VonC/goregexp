@@ -38,18 +38,18 @@ func (rr *Reres) HasAnyMatch() bool {
 	return len(rr.matches) > 0
 }
 
-/* Check if there is one more match */
+/* HasNext checks if there is one more match */
 func (rr *Reres) HasNext() bool {
 	return rr.i < len(rr.matches)
 }
 
-/* Refers to the next match, for Group() to works with */
+/* Next() refers to the next match, for Group() to works with */
 func (rr *Reres) Next() {
 	rr.previous = rr.matches[rr.i][1]
 	rr.i = rr.i + 1
 }
 
-/* Get back to the first match */
+/*  ResetNext() get back to the first match */
 func (rr *Reres) ResetNext() {
 	rr.i = 0
 	rr.previous = 0
