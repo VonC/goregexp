@@ -39,5 +39,12 @@ func TestProject(t *testing.T) {
 			So(rx.HasNext(), ShouldBeTrue)
 		})
 
+		Convey("A Regexp res can get prefix and suffix", func() {
+			r := regexp.MustCompile("(test)+")
+			rx := NewReres("aaatesttestbbb", r)
+			So(rx.Prefix(), ShouldEqual, "aaa")
+			So(rx.Suffix(), ShouldEqual, "bbb")
+		})
+
 	})
 }

@@ -55,13 +55,13 @@ func (rr *Reres) ResetNext() {
 	rr.previous = 0
 }
 
-/* String from the last match to current one */
+/* Prefix gets the string from the last match to current one */
 func (rr *Reres) Prefix() string {
 	mi := rr.matches[rr.i]
 	return rr.s[rr.previous:mi[0]]
 }
 
-/* String from current match to the end ofthe all string */
+/* Suffix gets the string from current match to the end ofthe all string */
 func (rr *Reres) Suffix() string {
 	mi := rr.matches[rr.i]
 	res := ""
