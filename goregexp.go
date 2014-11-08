@@ -71,7 +71,7 @@ func (rr *Reres) Suffix() string {
 	return res
 }
 
-/* First character of the current match */
+/* FirstChar returns the first character of the current match */
 func (rr *Reres) FirstChar() uint8 {
 	mi := rr.matches[rr.i]
 	return rr.s[mi[0]]

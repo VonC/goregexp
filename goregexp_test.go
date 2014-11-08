@@ -46,5 +46,14 @@ func TestProject(t *testing.T) {
 			So(rx.Suffix(), ShouldEqual, "bbb")
 		})
 
+		Convey("A Regexp res can get the first char of the current match", func() {
+			r := regexp.MustCompile("(.est)")
+			rx := NewReres("aaaTestcccUestbbb", r)
+			So(rx.FirstChar(), ShouldEqual, 'T')
+			So(rx.HasNext(), ShouldBeTrue)
+			rx.Next()
+			So(rx.FirstChar(), ShouldEqual, 'U')
+		})
+
 	})
 }
