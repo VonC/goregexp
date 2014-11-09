@@ -77,7 +77,7 @@ func (rr *Reres) FirstChar() uint8 {
 	return rr.s[mi[0]]
 }
 
-/* Test if first character of the current match is an escape */
+/* IsEscaped() checks if first character of the current match is an escape */
 func (rr *Reres) IsEscaped() bool {
 	mi := rr.matches[rr.i]
 	return rr.s[mi[0]] == '\\'

@@ -55,5 +55,13 @@ func TestProject(t *testing.T) {
 			So(rx.FirstChar(), ShouldEqual, 'U')
 		})
 
+		Convey("A Regexp res can detect if the first char of the current match is \\", func() {
+			r := regexp.MustCompile("(.est)")
+			rx := NewReres("aaaTestccc\\estbbb", r)
+			So(rx.IsEscaped(), ShouldBeFalse)
+			rx.Next()
+			So(rx.IsEscaped(), ShouldBeTrue)
+		})
+
 	})
 }
