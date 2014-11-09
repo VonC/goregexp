@@ -83,7 +83,7 @@ func (rr *Reres) IsEscaped() bool {
 	return rr.s[mi[0]] == '\\'
 }
 
-/* Full string matched for the current group */
+/* FullMatch gets the full string matched for the current group */
 func (rr *Reres) FullMatch() string {
 	mi := rr.matches[rr.i]
 	return rr.s[mi[0]:mi[1]]

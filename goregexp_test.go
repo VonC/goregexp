@@ -63,5 +63,13 @@ func TestProject(t *testing.T) {
 			So(rx.IsEscaped(), ShouldBeTrue)
 		})
 
+		Convey("A Regexp res can get full match", func() {
+			r := regexp.MustCompile("(.est)")
+			rx := NewReres("aaa1Testccc2Uestbbb3", r)
+			So(rx.FullMatch(), ShouldEqual, "Test")
+			rx.Next()
+			So(rx.FullMatch(), ShouldEqual, "Uest")
+		})
+
 	})
 }
