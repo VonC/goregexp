@@ -71,5 +71,14 @@ func TestProject(t *testing.T) {
 			So(rx.FullMatch(), ShouldEqual, "Uest")
 		})
 
+		Convey("A Regexp res can check if a group is matched", func() {
+			r := regexp.MustCompile("(Test)(b?)(c)")
+			rx := NewReres("Testc", r)
+			// fmt.Println(rx.matches)
+			So(rx.HasGroup(1), ShouldBeTrue)
+			So(rx.HasGroup(2), ShouldBeFalse)
+			So(rx.HasGroup(3), ShouldBeTrue)
+		})
+
 	})
 }

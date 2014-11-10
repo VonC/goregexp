@@ -89,7 +89,8 @@ func (rr *Reres) FullMatch() string {
 	return rr.s[mi[0]:mi[1]]
 }
 
-/* Check if the ith group if present in the current match */
+/* HasGroup checks if the ith group if present in the current match
+(1-based index) */
 func (rr *Reres) HasGroup(j int) bool {
 	res := false
 	mi := rr.matches[rr.i]
