@@ -104,7 +104,8 @@ func (rr *Reres) HasGroup(j int) bool {
 	return res
 }
 
-/* return the ith group string, if present in the current match */
+/* Group returns the ith group string, if present in the current match
+(1-based index) */
 func (rr *Reres) Group(i int) string {
 	res := ""
 	if rr.HasGroup(i) {

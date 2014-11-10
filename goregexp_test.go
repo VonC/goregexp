@@ -80,5 +80,14 @@ func TestProject(t *testing.T) {
 			So(rx.HasGroup(3), ShouldBeTrue)
 		})
 
+		Convey("A Regexp res get the group (string)", func() {
+			r := regexp.MustCompile("(TesT)(a?)(d)")
+			rx := NewReres("TesTd", r)
+			// fmt.Println(rx.matches)
+			So(rx.Group(1), ShouldEqual, "TesT")
+			So(rx.Group(2), ShouldEqual, "")
+			So(rx.Group(3), ShouldEqual, "d")
+		})
+
 	})
 }
