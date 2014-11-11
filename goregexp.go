@@ -16,8 +16,8 @@ type Reres struct {
 	previous int
 }
 
-func (r *Reres) String() string {
-	msg := fmt.Sprintf("Regexp res for '%v': (%v-%v; len %v) %v", r.r, r.i, r.previous, len(r.s), r.matches)
+func (rr *Reres) String() string {
+	msg := fmt.Sprintf("Regexp res for '%v': (%v-%v; len %v) %v", rr.r, rr.i, rr.previous, len(rr.s), rr.matches)
 	return msg
 }
 
