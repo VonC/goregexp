@@ -28,40 +28,40 @@ func NewReres(s string, r *regexp.Regexp) *Reres {
 	return &Reres{r, s, matches, 0, 0}
 }
 
-/* Text returns the full initial text on which the regex was applied */
+// Text returns the full initial text on which the regex was applied
 func (rr *Reres) Text() string {
 	return rr.s
 }
 
-/* HasAnyMatch checks if there is any match */
+// HasAnyMatch checks if there is any match
 func (rr *Reres) HasAnyMatch() bool {
 	return len(rr.matches) > 0
 }
 
-/* HasNext checks if there is one more match */
+// HasNext checks if there is one more match
 func (rr *Reres) HasNext() bool {
 	return rr.i < len(rr.matches)
 }
 
-/* Next() refers to the next match, for Group() to works with */
+// Next refers to the next match, for Group() to works with
 func (rr *Reres) Next() {
 	rr.previous = rr.matches[rr.i][1]
 	rr.i = rr.i + 1
 }
 
-/*  ResetNext() get back to the first match */
+// ResetNext gets back to the first match
 func (rr *Reres) ResetNext() {
 	rr.i = 0
 	rr.previous = 0
 }
 
-/* Prefix gets the string from the last match to current one */
+// Prefix gets the string from the last match to current one
 func (rr *Reres) Prefix() string {
 	mi := rr.matches[rr.i]
 	return rr.s[rr.previous:mi[0]]
 }
 
-/* Suffix gets the string from current match to the end ofthe all string */
+// Suffix gets the string from current match to the end ofthe all string
 func (rr *Reres) Suffix() string {
 	mi := rr.matches[rr.i]
 	res := ""
@@ -71,26 +71,26 @@ func (rr *Reres) Suffix() string {
 	return res
 }
 
-/* FirstChar returns the first character of the current match */
+// FirstChar returns the first character of the current match
 func (rr *Reres) FirstChar() uint8 {
 	mi := rr.matches[rr.i]
 	return rr.s[mi[0]]
 }
 
-/* IsEscaped() checks if first character of the current match is an escape */
+// IsEscaped checks if first character of the current match is an escape
 func (rr *Reres) IsEscaped() bool {
 	mi := rr.matches[rr.i]
 	return rr.s[mi[0]] == '\\'
 }
 
-/* FullMatch gets the full string matched for the current group */
+// FullMatch gets the full string matched for the current group
 func (rr *Reres) FullMatch() string {
 	mi := rr.matches[rr.i]
 	return rr.s[mi[0]:mi[1]]
 }
 
-/* HasGroup checks if the ith group if present in the current match
-(1-based index) */
+// HasGroup checks if the ith group if present in the current match
+// (1-based index)
 func (rr *Reres) HasGroup(j int) bool {
 	res := false
 	mi := rr.matches[rr.i]
@@ -104,8 +104,8 @@ func (rr *Reres) HasGroup(j int) bool {
 	return res
 }
 
-/* Group returns the ith group string, if present in the current match
-(1-based index) */
+// Group returns the ith group string, if present in the current match
+// (1-based index)
 func (rr *Reres) Group(i int) string {
 	res := ""
 	if rr.HasGroup(i) {
