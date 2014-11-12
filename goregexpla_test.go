@@ -9,7 +9,7 @@ import (
 func TestReresLA(t *testing.T) {
 	Convey("Test new regexp res can test LookAhead", t, func() {
 
-		Convey("Regexps can simulate a lookahead at the end of a regexp", t, func() {
+		Convey("Regexps can simulate a lookahead at the end of a regexp", func() {
 			rx, _ := regexp.Compile(`a(b*)c($|de)`)
 			r := NewReresLAGroup("aabbbbcdefabbcabbbcdeabcdabbc", rx)
 
@@ -35,7 +35,7 @@ func TestReresLA(t *testing.T) {
 			So(r.Group(1), ShouldEqual, "bb")
 			So(r.Suffix(), ShouldEqual, "")
 		})
-		Convey("Regexps can simulate a lookahead at the end of a regexp choice", t, func() {
+		Convey("Regexps can simulate a lookahead at the end of a regexp choice", func() {
 			rx, _ := regexp.Compile(`a(b*)c|d(e*)([^f])`)
 			r := NewReresLAGroup("aabbbbcdaefdeeeabbc", rx)
 
