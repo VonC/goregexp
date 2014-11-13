@@ -2,6 +2,7 @@ package goregexp
 
 import (
 	"regexp"
+	"strings"
 	"testing"
 	. "github.com/smartystreets/goconvey/convey"
 )
@@ -70,5 +71,36 @@ func TestReresLA(t *testing.T) {
 			So(r.Suffix(), ShouldEqual, "")
 		})
 
+		Convey("Regexps can simulate a lookahead at the end of a regexp referencing a previous group", func() {
+			// KbdDelimiterRx = /(?:\+|,)(?=#{CC_BLANK}*[^\1])/ */
+			KbdDelimiterRx, _ := regexp.Compile(`(?:\+|,)([ \t]*[^ \t])`)
+			r := NewReresLAQual(`Ctrl + Alt+T`, KbdDelimiterRx, kbdla)
+
+			So(r.HasAnyMatch(), ShouldBeTrue)
+			So(len(r.matches), ShouldEqual, 2)
+
+			So(r.FullMatch(), ShouldEqual, "+")
+			r.Next()
+			So(r.FullMatch(), ShouldEqual, "+")
+
+			r = NewReresLAQual(`
+   Ctrl,T`, KbdDelimiterRx, kbdla)
+			So(r.HasAnyMatch(), ShouldBeTrue)
+			So(len(r.matches), ShouldEqual, 1)
+			So(r.FullMatch(), ShouldEqual, ",")
+
+			r = NewReresLAQual(`Ctrl,  ,`, KbdDelimiterRx, kbdla)
+			So(r.HasAnyMatch(), ShouldBeFalse)
+			r = NewReresLAQual(`Ctrl +  +a`, KbdDelimiterRx, kbdla)
+			So(len(r.matches), ShouldEqual, 1)
+			So(r.FullMatch(), ShouldEqual, "+")
+		})
 	})
+}
+
+func kbdla(lh string, match []int, s string) bool {
+	m := strings.TrimSpace(lh)
+	g1 := string(s[match[0]:match[1]])
+	//fmt.Printf("\nm='%v' vs. g1='%v'\n", m, g1)
+	return m != g1
 }
