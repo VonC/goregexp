@@ -40,13 +40,16 @@ func (rr *Reres) HasAnyMatch() bool {
 
 // HasNext checks if there is one more match
 func (rr *Reres) HasNext() bool {
-	return rr.i < len(rr.matches)
+	return rr.i < len(rr.matches)-1
 }
 
-// Next refers to the next match, for Group() to works with
+// Next refers to the next match, for Group() to works with.
+// Does Nothing if there is no next match
 func (rr *Reres) Next() {
-	rr.previous = rr.matches[rr.i][1]
-	rr.i = rr.i + 1
+	if rr.HasNext() {
+		rr.previous = rr.matches[rr.i][1]
+		rr.i = rr.i + 1
+	}
 }
 
 // ResetNext gets back to the first match

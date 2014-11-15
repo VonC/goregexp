@@ -31,7 +31,7 @@ func TestProject(t *testing.T) {
 
 		Convey("A Regexp res can reference groups", func() {
 			r := regexp.MustCompile("(test)+")
-			rx := NewReres("testtest", r)
+			rx := NewReres("testatest", r)
 			So(rx.HasNext(), ShouldBeTrue)
 			rx.Next()
 			So(rx.HasNext(), ShouldBeFalse)
