@@ -44,6 +44,7 @@ func TestProject(t *testing.T) {
 			rx := NewReres("aaatesttestbbb", r)
 			So(rx.Prefix(), ShouldEqual, "aaa")
 			So(rx.Suffix(), ShouldEqual, "bbb")
+			So(rx.HasNext(), ShouldBeFalse)
 		})
 
 		Convey("A Regexp res can get the first char of the current match", func() {
