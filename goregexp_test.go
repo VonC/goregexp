@@ -54,6 +54,7 @@ func TestProject(t *testing.T) {
 			So(rx.HasNext(), ShouldBeTrue)
 			rx.Next()
 			So(rx.FirstChar(), ShouldEqual, 'U')
+			So(rx.HasNext(), ShouldBeFalse)
 		})
 
 		Convey("A Regexp res can detect if the first char of the current match is \\", func() {
