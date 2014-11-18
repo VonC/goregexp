@@ -63,6 +63,7 @@ func TestProject(t *testing.T) {
 			So(rx.IsEscaped(), ShouldBeFalse)
 			rx.Next()
 			So(rx.IsEscaped(), ShouldBeTrue)
+			So(rx.HasNext(), ShouldBeFalse)
 		})
 
 		Convey("A Regexp res can get full match", func() {
