@@ -72,6 +72,7 @@ func TestProject(t *testing.T) {
 			So(rx.FullMatch(), ShouldEqual, "Test")
 			rx.Next()
 			So(rx.FullMatch(), ShouldEqual, "Uest")
+			So(rx.HasNext(), ShouldBeFalse)
 		})
 
 		Convey("A Regexp res can check if a group is matched", func() {
