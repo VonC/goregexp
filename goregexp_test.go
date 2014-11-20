@@ -82,6 +82,7 @@ func TestProject(t *testing.T) {
 			So(rx.HasGroup(1), ShouldBeTrue)
 			So(rx.HasGroup(2), ShouldBeFalse)
 			So(rx.HasGroup(3), ShouldBeTrue)
+			So(rx.HasNext(), ShouldBeFalse)
 		})
 
 		Convey("A Regexp res get the group (string)", func() {
