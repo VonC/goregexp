@@ -92,6 +92,7 @@ func TestProject(t *testing.T) {
 			So(rx.Group(1), ShouldEqual, "TesT")
 			So(rx.Group(2), ShouldEqual, "")
 			So(rx.Group(3), ShouldEqual, "d")
+			So(rx.HasNext(), ShouldBeFalse)
 		})
 
 	})
